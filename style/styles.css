@@ -1,0 +1,125 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #333
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1;
+  font-size: 48px;
+  margin: 20px;
+  background-color: grey;
+}
+
+/***************************/
+/********** NAVBAR *********/
+/***************************/
+.homepage-nav{
+  display: flex;
+  justify-content: space-between;
+
+  background-color: lightgrey;
+  height: 150px;
+  padding: 0 60px;
+  margin-bottom: 30px;
+}
+
+.img-container{
+  padding-top: 10px;
+}
+
+.nav-img{
+  height: 100%;
+}
+
+.nav-links{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.nav-link {
+  color: blue;
+  /* text-decoration: none; */
+}
+
+.nav-item{
+  /* list-style: none; */
+}
+
+
+
+/***************************/
+/********** HEADER *********/
+/***************************/
+.project-container{
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 120px;
+  margin-bottom: 30px;
+  height: 450px
+}
+
+.project-title{
+  align-self: center;
+  justify-self: center;
+}
+
+.project-description{
+  align-self: center;
+  justify-self: center;
+}
+
+/***************************/
+/********** MAIN *********/
+/***************************/
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 4.5fr;
+  margin-bottom: 30px;
+  gap: 5px;
+}
+
+.grid-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgrey;
+  height: 250px;
+}
+
+.grid-item a{
+  color: blue;
+}
+.grid-item-6{
+  color: purple;
+}
+
+.grid-item-link{
+  text-decoration: none;
+}
+
+/***************************/
+/********** ASIDE *********/
+/***************************/
+
+
+/***************************/
+/********** SECTION *********/
+/***************************/
+
+
+/***************************/
+/********** FOOTER *********/
+/***************************/
