@@ -24,12 +24,12 @@ html{
     text-align: center;
 }
   
-.experience-item {
+.experience-item  {
     grid-area: experience-item;
 }
   
 .projects-item {
-    grid-area: projects-item;
+    grid-area: 'projects-item';
 }
   
 .hobbies-item {
@@ -37,7 +37,7 @@ html{
 }
 
 img#pfp {
-    height: 150px;
+    height: 170px;
     width: 150px;
     border-radius: 50%;
     margin-top: 30px;
