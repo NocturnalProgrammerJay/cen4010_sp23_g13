@@ -1,5 +1,7 @@
-html{
+html {
     background-color: lightgray;
+    overflow: hidden;
+    height: 100vh;
 }
 
 .container {
@@ -10,70 +12,94 @@ html{
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-      "profile-item experience-item"
-      "profile-item projects-item"
-      "profile-item hobbies-item";
-    background-color: rgba(214, 144, 39, 0.877);
-    width:100vw;
-    height:100vh;  
+        "profile-item experience-item"
+        "profile-item projects-item"
+        "profile-item hobbies-item";
+    background-color: #20B2AA;
+    width: 100vw;
+    height: 100vh;
 }
-  
+
 .profile-item {
     grid-area: profile-item;
     justify-content: center;
     text-align: center;
 }
-  
+
 .experience-item {
-    grid-area: experience-item;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px dashed lightslategray;
 }
-  
+
 .projects-item {
-    grid-area: projects-item;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px dashed lightslategray;
 }
-  
+
 .hobbies-item {
-    grid-area: hobbies-item;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.flex--item {
+    flex-grow: 1;
+}
+
+
+.exp li {
+    display: inline;
+}
+
+li img {
+    height: 100px;
+    margin: 0 30px
+}
+
 
 img#pfp {
     height: 150px;
     width: 150px;
     border-radius: 50%;
     margin-top: 30px;
+    border: solid black 2.5px
 }
 
 div.section {
     background-color: whitesmoke;
-    margin:0;
-    width:100%;
+    margin: 0;
+    width: 100%;
     vertical-align: middle;
 }
 
-h2{
-    margin: 50px;
+h2 {
+    margin: 20px;
     padding: 5px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    margin-top: 125px;
+    font-size: 38px;
+    /* margin-top: 125px; */
 }
 
-ul{
-    margin:50px;
+ul {
+    /* margin: 50px; */
 }
 
-h1{
-    font-family:Verdana, Geneva, Tahoma, sans-serif
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
-p{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-}
-li{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+    padding: 0 20px;
 }
 
-hr{
-   border: 3px dashed lightslategray; 
+li {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+hr {
+    border: 3px dashed lightslategray;
+}
