@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,35 +8,48 @@
     <title>Homepage</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    <!-- CONTAINER -->
     <div class="container">
+        <!-- PROFILE -->
         <div class="profile-item">
-            <img src="pfpimg.png" id="pfp" alt="profile-pic">
-            <h1><i>Insert Name</i></h2>
-            <p>
-                About me here
-            </p>
+            <img src="pfpimg.jpeg" id="pfp" alt="profile-pic">
+            <h1><i>Bruno Mundim</i></h2>
+                <p>
+                    I am a junior at FAU pursuing a bachelor's in Computer Science
+                </p>
         </div>
+        <!-- EXPERIENCE-->
         <div class="experience-item section">
-            <h2 style="float:left;">Experience</h2>
-            <ul style="float:inline-start;">
-                <li>Experience 1</li>
-                <li>Experience 2</li>
+            <h2 class="flex--item">Experience</h2>
+            <ul class="flex--item exp">
+                <li>C++</li>
+                <li>Python</li>
+                <li>HTML</li>
+                <li>CSS</li>
             </ul>
         </div>
+        <!-- PROJECTS -->
         <div class="projects-item section">
-            <hr>
-            <ul style="float:left;">
-                <li>Project 1</li>
-                <li>Project 2</li>
+            <!-- <hr> -->
+            <h2 class="flex--item">Projects</h2>
+            <ul class="flex--item">
+                <li style="list-style-type: none; margin-bottom: 5px;">
+                    <ul>
+                        <li>Password manager</li>
+                    </ul>
+                </li>
             </ul>
-            <h2 style="float:inline-start;">Projects</h2>
         </div>
+        <!-- HOBBIES -->
         <div class="hobbies-item section">
-            <hr>
-            <h2 style="margin:50px;text-align:center;">Hobbies</h2>
-            <p>Hobbies here</p>
+            <h2>Hobbies</h2>
+            <ul style="list-style-type: none; margin-bottom: 5px;">
+                <li>On my free time I like to play the guitar or play online games with my friends</li>
+            </ul>
         </div>
     </div>
 </body>
+
 </html>
