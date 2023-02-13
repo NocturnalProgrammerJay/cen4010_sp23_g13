@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,35 +8,84 @@
     <title>Homepage</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    <!-- CONTAINER -->
     <div class="container">
+        <!-- PROFILE -->
         <div class="profile-item">
-            <img src="pfpimg.png" id="pfp" alt="profile-pic">
-            <h1><i>Insert Name</i></h2>
-            <p>
-                About me here
-            </p>
+            <img src="img/meee.PNG" id="pfp" alt="profile-pic">
+            <h1><i>Jamar Andrade</i></h2>
+                <p>
+                    I am a senior computer science student with experience in full stack web development. I have a
+                    strong background in programming languages such as Python, JavaScript, and Java. In addition to my
+                    technical skills, I am also a dedicated volunteer with LACCEI, working with different technologies,
+                    and enjoy giving back to my community.
+                </p>
         </div>
+        <!-- EXPERIENCE-->
         <div class="experience-item section">
-            <h2 style="float:left;">Experience</h2>
-            <ul style="float:inline-start;">
-                <li>Experience 1</li>
-                <li>Experience 2</li>
+            <h2 class="flex--item">Experience</h2>
+            <ul class="flex--item exp">
+                <li><img src="img/htmlimg.png" alt=""></li>
+                <li><img src="img/cssimg.png" alt=""></li>
+                <li><img src="img/jsimg.png" alt=""></li>
+                <li><img src="img/nodejsimg.png" alt=""></li>
+                <li><img src="img/reactjsimg.png" alt=""></li>
             </ul>
         </div>
+        <!-- PROJECTS -->
         <div class="projects-item section">
-            <hr>
-            <ul style="float:left;">
-                <li>Project 1</li>
-                <li>Project 2</li>
+            <!-- <hr> -->
+            <h2 class="flex--item">Projects</h2>
+            <ul class="flex--item">
+                <li style="list-style-type: none; margin-bottom: 5px;">
+                    <h5>Registration Form | Node.js, Firebase, Netlify, JavaScript</h5>
+                    <ul>
+                        <li>Cooperated with a team to develop a form to pre-screen candidates for a professor role,
+                            saving them funds. </li>
+                        <li>Initiated technical design layout using UML and markdown documentation inside of a GitHub
+                            repository. </li>
+                        <li>Developed the frontend and backend using Netlify, Node.js, and Firebase. Delivered a
+                            flexible and scalable app. </li>
+                    </ul>
+                </li>
+                <li style="list-style-type: none; margin-bottom: 5px;">
+                    <h5>Note-Taking Application | PHP, Postman</h5>
+                    <ul>
+                        <li>Designed skeleton code for 5+ volunteers to follow/build a Note Taking App that included
+                            PHP and Postman.</li>
+                        <li>Curated guide designed to be easily understood and explained about APIs with system
+                            architecture. </li>
+                        <li>Mentored volunteers through observation, providing documentation, and guidance throughout
+                            their process. </li>
+                    </ul>
+                </li>
+                <li style="list-style-type: none; margin-bottom: 5px;">
+                    <h5>Shopping Cart Application | Java, Marvin</h5>
+                    <ul>
+                        <li>Exhibited SOLID and OOP principles to create a shopping cart application. </li>
+                        <li>Introduced UML diagrams, use cases, code optimization, eliminated code redundancy, and
+                            used design patterns. </li>
+                        <li>Planned implementation for the structure of the application through collaboration and
+                            communication with colleagues.</li>
+                    </ul>
+                </li>
             </ul>
-            <h2 style="float:inline-start;">Projects</h2>
         </div>
+        <!-- HOBBIES -->
         <div class="hobbies-item section">
-            <hr>
-            <h2 style="margin:50px;text-align:center;">Hobbies</h2>
-            <p>Hobbies here</p>
+            <h2>Hobbies</h2>
+            <ul style="list-style-type: none; margin-bottom: 5px;">
+                <li><b>Video games:</b> Playing video games help me blow off steam when it comes to classwork overload
+                    in college.
+                </li>
+                <li><b>Electronics:</b> Building and tinkering with electronics, such as custom desktop computers,
+                    microcontroller projects, or robotics.</li>
+                <li><b>Coding outside of work:</b> I love to take courses on Udemy pertaining to web development.</li>
+            </ul>
         </div>
     </div>
 </body>
+
 </html>
