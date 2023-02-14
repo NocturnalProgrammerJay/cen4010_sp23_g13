@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  color: #333
+
 }
 
 html {
@@ -12,33 +12,34 @@ html {
 body {
   font-family: sans-serif;
   line-height: 1;
-  font-size: 48px;
-  margin: 20px;
+  font-size: 36px;
+  margin: 0 20px;
   background-color: grey;
+  color: #333
 }
 
 /***************************/
 /********** NAVBAR *********/
 /***************************/
-.homepage-nav{
+.homepage-nav {
   display: flex;
   justify-content: space-between;
 
   background-color: lightgrey;
   height: 150px;
   padding: 0 60px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
-.img-container{
+.img-container {
   padding-top: 10px;
 }
 
-.nav-img{
+.nav-img {
   height: 100%;
 }
 
-.nav-links{
+.nav-links {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,7 +51,7 @@ body {
   /* text-decoration: none; */
 }
 
-.nav-item{
+.nav-item {
   /* list-style: none; */
 }
 
@@ -59,7 +60,7 @@ body {
 /***************************/
 /********** HEADER *********/
 /***************************/
-.project-container{
+.project-container {
   background-color: lightgrey;
   display: flex;
   flex-direction: column;
@@ -67,16 +68,27 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0 120px;
-  margin-bottom: 30px;
-  height: 450px
+  margin-bottom: 15px;
+  height: 350px;
+  /* color: white; */
 }
 
-.project-title{
+.project-container--img {
+  background-image: url("../public/img/pexels-pixabay-270348.jpg");
+  filter: blur(1px);
+  z-index: -1;
+}
+
+.project-container--bb {
+  margin-bottom: 0;
+}
+
+.project-title {
   align-self: center;
   justify-self: center;
 }
 
-.project-description{
+.project-description {
   align-self: center;
   justify-self: center;
 }
@@ -84,14 +96,14 @@ body {
 /***************************/
 /********** MAIN *********/
 /***************************/
-.grid{
+.grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 4.5fr;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   gap: 5px;
 }
 
-.grid-item{
+.grid-item {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,14 +111,15 @@ body {
   height: 250px;
 }
 
-.grid-item a{
+.grid-item a {
   color: blue;
 }
-.grid-item-6{
+
+.grid-item-6 {
   color: purple;
 }
 
-.grid-item-link{
+.grid-item-link {
   text-decoration: none;
 }
 
