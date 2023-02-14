@@ -1,8 +1,7 @@
 # cen4010_sp23_g13
 
-======= HELOL
 
-"markdown cheat sheet - https://www.markdownguide.org/cheat-sheet/"
 
-THIS IS THE MASTER BRANCH, DONT MAKE ANY CHANGES HERE.
+### Snapshot
+![image](https://user-images.githubusercontent.com/96387037/218852048-be1e573d-fd3e-4090-8419-69966443001e.png)
 
