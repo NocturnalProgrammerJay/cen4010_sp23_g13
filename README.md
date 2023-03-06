@@ -1,4 +1,4 @@
-# CEN4010_SP23_G13 Frontend Project
+# CEN4010_SP23_G13: Scrum Project
 
 CEN4010_SP23_G13 is a frontend project built by a team with the goal of working together in a Scrum manner to build an application for a class called Principles of Software Engineering. The project was hosted using FAU Lampserver and managed using JIRA to assign and track team members' responsibilities. The team shared a Git repository to collaborate and version control the project.
 
