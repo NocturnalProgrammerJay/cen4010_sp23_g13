@@ -1,0 +1,3 @@
+- Updated section 3.1 on the non-member expectations section, regarding the cart. Removed option to buy books and credit card and price mentions on the entire project
+- Removed library card mentions on use cases. Users will borrow books using their online account only
+- For use case #2, instead of receiving an email with the loan confirmation, the user just sees the confirmation page
