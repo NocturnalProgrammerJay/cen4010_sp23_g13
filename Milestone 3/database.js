@@ -1,54 +1,23 @@
-require('dotenv').config()
-const mysql = require('mysql')
+const mysql = require('mysql2')
 
+// create a connection to the database
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  host: 'localhost',
+  user: 'cen4010sp23g13',
+  password: 'ASpring#2023',
+  database: 'cen4010sp23g13'
 })
 
-connection.connect((err) => {
-  if (err) {
-    console.error('Error connecting to database: ' + err.stack)
-    return
-  }
-
-  console.log('Connected to database with ID: ' + connection.threadId)
+// connect to the database
+connection.connect(function(err) {
+  if (err) throw err
+  console.log('Connected to MySQL database!')
 })
 
-// Read all data from the database
-const readAllData = () => {
-    const sql = 'SELECT * FROM my_table'
-  
-    connection.query(sql, (err, result) => {
-      if (err) throw err
-  
-      return result
-    })
-  }
+// perform database operations here...
 
-// Read data basic off id
-const readData = (id) => {
-    const sql = 'SELECT * FROM my_table WHERE id = ?'
-  
-    connection.query(sql, [id], (err, result) => {
-      if (err) throw err
-  
-      //DB DATA
-      console.log(result)
-    })
-}
-
-connection.end((err) => {
-  if (err) {
-    console.error('Error disconnecting from database: ' + err.stack)
-    return
-  }
-
-  console.log('Disconnected from database.')
+// close the connection when finished
+connection.end(function(err) {
+  if (err) throw err
+  console.log('Disconnected from MySQL database!')
 })
-
-//----------------------------------------------------------------------------------------
-
-const results = readAllData()

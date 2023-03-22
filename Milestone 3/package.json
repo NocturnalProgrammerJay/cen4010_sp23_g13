@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "mysql2": "^3.2.0"
+  },
+  "name": "milestone-3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon database.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

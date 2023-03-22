@@ -1,5 +1,5 @@
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Online Library</title>
 
@@ -57,7 +57,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-primary" id="modalButton">Login</button>
                 </div>
             </div>
         </div>
@@ -128,8 +128,6 @@
             Login
         </button>
     </div>
-    <div id="viewerCanvas" style="width: 600px; height: 500px"></div>
-
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -142,9 +140,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    //explicit js code
-    <!-- Your HTML content here -->
+    <!-- explicit js code -->
+
     <script defer src="config.js"></script>
+    <script defer src="database.js"></script>
     <script defer src="index.js"></script>
 </body>
 
