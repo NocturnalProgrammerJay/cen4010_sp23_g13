@@ -1,7 +1,10 @@
 // Initialize an empty array to store items in the cart
+const state = []
 const cart = []
 
+
 // Initialize the variable isLoggedIn to false
+let accumulator = 0
 let isLoggedIn = false
 
 // Get references to the login button and the modal
@@ -28,6 +31,7 @@ loginButton.addEventListener('click', function() {
     loginButtonHide.style.display = 'none';
     const loginButton = document.querySelector('button[data-target="#loginModal"]');
     loginButton.style.display = 'none';
+    updateLogin()
   } else {
 
     // If invalid, display an error message
@@ -42,11 +46,15 @@ const search = async () => {
         // Get the search query from the search input field
         const query = document.getElementById('search').value;
 
+        if (query === ""){
+          return
+        }
+
         // Set the API key
         const key = "AIzaSyAj2K6rhZ7wT_dlp65rCuua2zQr8HYG-Io"
 
         // Construct the API URL
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&${key}&maxResults=3`
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&${key}&maxResults=9`
 
         // Send a GET request to the API URL and store the response in a variable called response
         const response = await fetch(url)
@@ -55,7 +63,6 @@ const search = async () => {
         const { items: searchResults } = await response.json()
 
         // Call the updateTable function to display the search results in a table
-        console.log(searchResults);
         updateTable(searchResults)
 
     } catch (error) {
@@ -73,35 +80,103 @@ function updateTable(searchResults) {
     tableBody.innerHTML = '';
 
     // Loop through each search result and add it to the cart array
-    searchResults.forEach((book) => {
-        cart.push(book)
+    searchResults.forEach(({volumeInfo}) => {
+        const book = {
+          title: volumeInfo.title,
+          author: volumeInfo.authors[0],
+          published: volumeInfo.publishedDate.slice(0, 4),
+          isbn: volumeInfo.industryIdentifiers[0].identifier,
+          img: volumeInfo.imageLinks.smallThumbnail,
+          isSelected: false
+        }
+        
+        state.push(book)
 
         // Create a new table row for the search result
         const row = document.createElement('tr');
 
         // Populate the table row with data from the search result
         row.innerHTML = `
-            <td>${book.volumeInfo.title}</td>
-            <td>${book.volumeInfo.authors[0]}</td>
-            <td>${book.volumeInfo.publishedDate.slice(0, 4)}</td>
-            <td>${book.volumeInfo.industryIdentifiers[0].identifier}</td>
-            <td><img src="${book.volumeInfo.imageLinks.smallThumbnail}"></td>
-            <td><button id="book-button" class="btn btn-primary">Add to Cart</button></td>
+            <td>${book.title}</td>
+            <td>${book.author}</td>
+            <td>${book.published}</td>
+            <td>${book.isbn}</td>
+            <td><img src="${book.img}"></td>
+            <td><button id="book-button" class="btn btn-primary" data-book="${book.title}">Add to Cart</button></td>
         `;
 
         // set the inner HTML of the new row with data from the book object
         tableBody.appendChild(row);
       });
 
-      tableBody.addEventListener('click', (event) => {
-        if (event.target.matches('button.btn-primary')) {
-          if (!isLoggedIn) {
-            alert('You must log in first...');
-          } else {
-            const bookTitle = event.target.parentNode.parentNode.firstChild.textContent;
-            console.log(`Added ${bookTitle} to the cart`);
-          }
-        }
-      })
-      
+      //create eventListener for each button thats create each time the client makes an API call
+      buttonEventListener()
 }
+
+const buttonEventListener = () => {
+  const btnPrimary = document.querySelectorAll('button.btn-primary');
+
+  btnPrimary.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      if (!isLoggedIn) {
+        alert('You must log in first...');
+      } else {
+        const book = event.target.dataset.book;
+        const existingCartItem = Boolean(cart.find(el => el.title === book));
+
+        if (existingCartItem === true) {
+          alert(`Book is already in cart`)
+        } else {
+          cart.push(...state.filter(el => el.title === book));
+          addToCart()
+          console.log("cart=",cart);
+        }
+      }
+    })
+  });
+}
+
+const addToCart = () => {
+  var cartCount = document.getElementById("cartCount");
+  var count = parseInt(cartCount.innerText);
+  count++;
+  cartCount.innerText = count;
+  cartCount.classList.add("added");
+  setTimeout(function() {
+    cartCount.classList.remove("added");
+  }, 200);
+}
+
+const updateLogin = () => {
+  const navbar = document.querySelector('.navbar-nav');
+  if (isLoggedIn) {
+    const logoutItem = document.createElement('li');
+    logoutItem.classList.add('nav-item');
+    const logoutButton = document.createElement('button');
+    logoutButton.type = 'button';
+    logoutButton.classList.add('btn', 'btn-outline-dark');
+    logoutButton.textContent = 'Logout';
+    logoutButton.addEventListener('click', () => {
+      isLoggedIn = false;
+      updateLogin();
+
+      //wipe user memory
+      state.length = 0
+      cart.length = 0
+      console.log("cart=",cart);
+    });
+    logoutItem.appendChild(logoutButton);
+    navbar.replaceChild(logoutItem, navbar.children[navbar.children.length - 1]);
+  } else {
+    const loginButton = document.createElement('button');
+    loginButton.type = 'button';
+    loginButton.classList.add('btn', 'btn-outline-dark');
+    loginButton.textContent = 'Login';
+    loginButton.addEventListener('click', () => {
+      isLoggedIn = true;
+      updateLogin();
+    });
+    navbar.replaceChild(loginButton, navbar.children[navbar.children.length - 1]);
+  }
+}
+
