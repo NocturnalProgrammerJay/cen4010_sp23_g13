@@ -1,10 +1,9 @@
-// Initialize an empty array to store items in the cart
+// Initialize an empty array to store items in the cart and state
 const state = []
 const cart = []
 
 
 // Initialize the variable isLoggedIn to false
-let accumulator = 0
 let isLoggedIn = false
 
 // Get references to the login button and the modal
@@ -14,7 +13,7 @@ const loginButton = document.querySelector('#loginModal .modal-footer button.btn
 const loginButtonHide = document.querySelector('button[data-target="#loginModal"]');
 const modal = document.getElementById('loginModal');
 
-// Attach a click event listener to the login button
+// Attach event listener to the login button
 loginButton.addEventListener('click', function() {
 
   // Get the username and password values from the input fields
@@ -39,13 +38,14 @@ loginButton.addEventListener('click', function() {
   }
 });
 
-// Define an asynchronous function called search that sends a request to the Google Books 
+// Define function for sending search request to Google Books API
 const search = async () => {
     try {
 
         // Get the search query from the search input field
         const query = document.getElementById('search').value;
 
+        // Return if search query is empty
         if (query === ""){
           return
         }
