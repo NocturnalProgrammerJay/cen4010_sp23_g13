@@ -25,12 +25,16 @@ loginButton.addEventListener('click', function() {
 
     // If valid, set isLoggedIn to true and hide the login modal
     isLoggedIn = true
+    var modalDialog = document.querySelector('.modal-dialog');
+    modalDialog.style.display = 'none';
+
     modal.classList.remove('show');
     document.querySelector('.modal-backdrop').remove();
     loginButtonHide.style.display = 'none';
     const loginButton = document.querySelector('button[data-target="#loginModal"]');
     loginButton.style.display = 'none';
     updateLogin()
+
   } else {
 
     // If invalid, display an error message
@@ -91,7 +95,7 @@ function updateTable(searchResults) {
         }
         
         // Update state with new books
-        const existingBook = boolean(state.find((item) => item.title === book.title));
+        const existingBook = Boolean(state.find((item) => item.title === book.title));
 
         // If book doesn't exist in state, then append book to state
         if (!existingBook) {
@@ -158,9 +162,6 @@ const addToCart = () => {
   count++;
   cartCount.innerText = count;
   cartCount.classList.add("added");
-  setTimeout(function() {
-    cartCount.classList.remove("added");
-  }, 200);
 }
 
 // This function updates the login/logout button in the navbar based on the user's login status
