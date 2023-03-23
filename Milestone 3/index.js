@@ -90,7 +90,13 @@ function updateTable(searchResults) {
           isSelected: false
         }
         
-        state.push(book)
+        // Update state with new books
+        const existingBook = boolean(state.find((item) => item.title === book.title));
+
+        // If book doesn't exist in state, then append book to state
+        if (!existingBook) {
+          state.push(book);
+        } 
 
         // Create a new table row for the search result
         const row = document.createElement('tr');
@@ -113,10 +119,14 @@ function updateTable(searchResults) {
       buttonEventListener()
 }
 
+// This function adds an event listener to all buttons with the class "btn-primary"
 const buttonEventListener = () => {
   const btnPrimary = document.querySelectorAll('button.btn-primary');
 
+  // Iterate over each button and add a click event listener
   btnPrimary.forEach((button) => {
+
+    // If the user is not logged in, show an alert message
     button.addEventListener('click', (event) => {
       if (!isLoggedIn) {
         alert('You must log in first...');
@@ -124,9 +134,14 @@ const buttonEventListener = () => {
         const book = event.target.dataset.book;
         const existingCartItem = Boolean(cart.find(el => el.title === book));
 
+        // If the book is already in the cart, show an alert message
         if (existingCartItem === true) {
           alert(`Book is already in cart`)
+
+        // If the book is not in the cart, add it to the cart and update the cart count
         } else {
+
+          // If the user is logged in, check if the book is already in the cart
           cart.push(...state.filter(el => el.title === book));
           addToCart()
           console.log("cart=",cart);
@@ -136,6 +151,7 @@ const buttonEventListener = () => {
   });
 }
 
+// This function updates the cart count when a book is added to the cart
 const addToCart = () => {
   var cartCount = document.getElementById("cartCount");
   var count = parseInt(cartCount.innerText);
@@ -147,9 +163,11 @@ const addToCart = () => {
   }, 200);
 }
 
+// This function updates the login/logout button in the navbar based on the user's login status
 const updateLogin = () => {
   const navbar = document.querySelector('.navbar-nav');
   if (isLoggedIn) {
+    // If the user is logged in, show a logout button
     const logoutItem = document.createElement('li');
     logoutItem.classList.add('nav-item');
     const logoutButton = document.createElement('button');
@@ -157,6 +175,8 @@ const updateLogin = () => {
     logoutButton.classList.add('btn', 'btn-outline-dark');
     logoutButton.textContent = 'Logout';
     logoutButton.addEventListener('click', () => {
+
+      // When the logout button is clicked, log the user out and wipe their cart and state
       isLoggedIn = false;
       updateLogin();
 
@@ -168,11 +188,15 @@ const updateLogin = () => {
     logoutItem.appendChild(logoutButton);
     navbar.replaceChild(logoutItem, navbar.children[navbar.children.length - 1]);
   } else {
+
+    // If the user is not logged in, show a login button
     const loginButton = document.createElement('button');
     loginButton.type = 'button';
     loginButton.classList.add('btn', 'btn-outline-dark');
     loginButton.textContent = 'Login';
     loginButton.addEventListener('click', () => {
+
+      // When the login button is clicked, log the user in and update the navbar
       isLoggedIn = true;
       updateLogin();
     });
