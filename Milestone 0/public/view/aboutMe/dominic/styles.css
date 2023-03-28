@@ -1,0 +1,107 @@
+html {
+  background-color: lightgray;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  gap: 1px 1px;
+  grid-auto-flow: row;
+  background: #630a97;
+  grid-template-areas:
+    "profile-item experience-item"
+    "profile-item projects-item"
+    "profile-item hobbies-item";
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.profile-item {
+  grid-area: profile-item;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.experience-item {
+  grid-area: experience-item;
+}
+
+.projects-item {
+  grid-area: projects-item;
+}
+
+.hobbies-item {
+  grid-area: hobbies-item;
+}
+
+img#pfp {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  margin-top: 30px;
+}
+
+div.section {
+  background-color: grey;
+  margin: 0;
+  width: 100%;
+  vertical-align: middle;
+}
+
+h2 {
+  margin: 50px;
+  padding: 5px;
+  font-family: "Bradley Hand", cursive;
+  font-size: 40px;
+  margin-top: 125px;
+  color: rgb(15, 93, 129);
+}
+
+ul {
+  margin: 50px;
+}
+
+h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 50px;
+}
+
+p {
+  font-size: 18px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+li {
+  font-family: Georgia, serif;
+  font-size: 20px;
+}
+
+.flex-container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+}
+
+.flex-item1 {
+  flex: 1 1 30%;
+  background-color: white;
+  justify-content: center;
+  text-align: center;
+}
+.flex-item2 {
+  flex: 1 1 70%;
+  background-color: white;
+  justify-content: center;
+  text-align: center;
+}
+.list {
+  display: inline-block;
+  text-align: left;
+}
+

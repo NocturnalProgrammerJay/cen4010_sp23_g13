@@ -7,17 +7,17 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Libster API',
+      title: 'BiblioTech API',
       version: '1.0.0',
       description: 'A library API for browsing books using google books.',
     },
     servers: [
       {
-        url: 'cen4010-sp23-g13@lamp.cse.fau.edu',
+        url: 'http://localhost:3000',
       },
     ],
   },
-  apis: ['./routes/*.js'],
+  apis: ['./*.js'],
 };
 
 const specs = swaggerJsDoc(options);
@@ -31,6 +31,58 @@ app.use(express.static(path.join(__dirname, 'js')));
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+/**
+ *  @swagger
+ * components:
+ *  schemas:
+ *    Book:
+ *      type: object
+ *      required:
+ *      - title
+ *      - author
+ *      - year
+ *      - ISBN
+ *      properties:
+ *        id:
+ *          type: string
+ *          description: Identifier unique to each book
+ *        title:
+ *          type: string
+ *          description: The title of the book
+ *        author:
+ *          type: string
+ *          description: The author of the book
+ *        year:
+ *          type: int
+ *          description: Publication year of the book
+ *        ISBN:
+ *          type: int
+ *          description: The books unique International Standard Book Number
+ *      example:
+ *        id: 123456
+ *        title: Moby Dick
+ *        author: Herman Melville
+ *        year: 1992
+ *        ISBN: 1853260088
+ *
+ */
+
+/**
+ * @swagger
+ * paths:
+ *  /:
+ *    get:
+ *      summary: Loads the landing page of the API application
+ *      responses:
+ *        200:
+ *          description: Sends the index.html file successfuly
+ *          content:
+ *            text/html:
+ *              schema:
+ *                type: string
+ *
+ */
 
 app.get('/', (req, res) => {
   res.status(200).sendFile(`${__dirname}/index.html`);

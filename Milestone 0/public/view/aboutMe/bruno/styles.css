@@ -13,7 +13,7 @@ html{
       "profile-item experience-item"
       "profile-item projects-item"
       "profile-item hobbies-item";
-    background-color: rgba(214, 144, 39, 0.877);
+    background-color: rgba(214, 39, 39, 0.877);
     width:100vw;
     height:100vh;  
 }
@@ -24,12 +24,12 @@ html{
     text-align: center;
 }
   
-.experience-item  {
+.experience-item {
     grid-area: experience-item;
 }
   
 .projects-item {
-    grid-area: 'projects-item';
+    grid-area: projects-item;
 }
   
 .hobbies-item {
@@ -37,7 +37,7 @@ html{
 }
 
 img#pfp {
-    height: 170px;
+    height: 150px;
     width: 150px;
     border-radius: 50%;
     margin-top: 30px;
