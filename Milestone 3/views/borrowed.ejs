@@ -174,10 +174,21 @@
             btnPrimary.forEach((button) => {
 
                 // If the user is not logged in, show an alert message
-                button.addEventListener('click', (event) => {
+                button.addEventListener('click', async (event) => {
                     const book = event.target.dataset.book;
+                    const data = {
+                        title: book
+                    }
 
-                    // CALL DELETE API CALL --------------------------------------------
+                    await fetch('http://localhost:3000/returnBook', {
+                        method: 'DELETE',
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    })
+
+
                     state = state.filter(el => el.title !== book)
                     updateTable()
 

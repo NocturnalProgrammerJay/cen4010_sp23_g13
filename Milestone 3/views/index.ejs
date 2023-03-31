@@ -176,7 +176,7 @@
 
 
         // Initialize the variable isLoggedIn to false
-        let isLoggedIn = true
+        let isLoggedIn = false
 
         // Get references to the login button and the modal
         const usernameInput = document.getElementById('username');
@@ -257,14 +257,15 @@
 
             // Loop through each search result and add it to the cart array
             searchResults.forEach(({ volumeInfo }) => {
+
                 const book = {
-                    title: volumeInfo.title,
-                    author: volumeInfo.authors[0],
-                    published: volumeInfo.publishedDate.slice(0, 4),
-                    isbn: volumeInfo.industryIdentifiers[0].identifier,
-                    img: volumeInfo.imageLinks.smallThumbnail,
+                    title: volumeInfo.title || 'Unknown title',
+                    author: Array.isArray(volumeInfo.authors) ? volumeInfo.authors[0] : volumeInfo.authors || 'Unknown author',
+                    published: volumeInfo.publishedDate ? volumeInfo.publishedDate.slice(0, 4) : 'Unknown year',
+                    isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers[0].identifier : 'Unknown ISBN',
+                    img: volumeInfo.imageLinks ? volumeInfo.imageLinks.smallThumbnail : 'https://via.placeholder.com/150x200.png?text=No+image',
                     isSelected: false
-                }
+                };
 
                 // Update state with new books
                 const existingBook = Boolean(state.find((item) => item.title === book.title));

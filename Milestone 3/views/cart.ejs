@@ -250,10 +250,16 @@
         const modalBackdrop = document.createElement('div');
         const confirmCheckoutButton = document.getElementById('confirmCheckoutButton');
 
-        confirmCheckoutButton.addEventListener('click', function () {
+        confirmCheckoutButton.addEventListener('click', async function () {
+
+            if (cart.length === 0) {
+                alert("cart is empty...")
+                return
+            }
 
             //hides checkout modal
             checkoutModal2.style.display = "none";
+
 
             document.getElementsByClassName('my-5')[0].style.display = 'none';
             document.getElementsByClassName('my-3')[0].style.display = 'none';
@@ -269,8 +275,18 @@
             // Add the "blur" effect to the body
             document.body.style.backdropFilter = 'blur(5px)';
 
+            await fetch('http://localhost:3000/addBooks', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(cart)
+            })
+
             setTimeout(() => {
                 window.location.href = "borrowedBooks";
+                //send post request 
+
             }, 2500);
         });
 

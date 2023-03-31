@@ -48,54 +48,51 @@ app.get("/getBorrowedBooks", async function (req, res) {
     }
 });
 
+app.post("/addBooks", async function (req, res) {
+  try {
+    const data = req.body;
 
-// app.post("/checkout", async function (req, res) {
-//     try {
-//       // Extract data from request body
-//       const {bookBatch} = req.body;
+    for (const book of data) {
+      let { author, title, published, isbn, img } = book;
 
-//       if(bookBatch.length === 0) {
-//         throw new Error('error')
-//       }
-        
-//       await Promise.all(
-//         bookBatch.map(async el => {
-//           const data = new BookSchema({ title: el.title, author: el.author, published: el.published, isbn: el.isbn, img: el.img });
-//           await data.save();
-//         })
-//       );
-  
-//       // Respond with success message and status code
-//       const rsp_obj = {
-//         message: "Books registered successfully.",
-//         status: "201",
-//       };
-//       res.status(201).json(rsp_obj);
-//     } catch (err) {
-//       // Handle error response if student ID already exists
-//       const rsp_obj = { message: err.message };
-//       return res.status(400).json(rsp_obj);
-//     }
-//   });
+      const bookExists = await BookSchema.find({ title });
+      if (bookExists.length > 0) {
+        continue;
+      }
 
-// app.delete("/students/:_id", async function (req, res) {
-//     try {
-//       const _id = +req.params._id;
-//       // Delete student record from database
-//       await Students.deleteOne({ _id: _id });
-//       // Respond with success message and record ID
-//       return res.status(200).json({
-//         message: `record ${_id} deleted!`,
-//         _id,
-//       });
-//     } catch (err) {
-//       // Handle error response if database operation fails
-//       return res.status(404).json({
-//         message: "error - resource not found",
-//         _id: +req.params._id,
-//       });
-//     }
-//   });
+      let bookData = new BookSchema({ author, title, published, isbn, img });
+      await bookData.save();
+    }
+
+    const rsp_obj = {
+      message: "Book(s) record created successfully.",
+      status: "201",
+    };
+
+    return res.status(201).json(rsp_obj);
+  } catch (err) {
+    const rsp_obj = { message: "error - resource not found" };
+    return res.status(404).end(rsp_obj.message);
+  }
+});
+
+app.delete("/returnBook", async function (req, res) {
+  try {
+    const { title } = req.body;
+
+    // Delete book record from database
+    await BookSchema.deleteOne({ title });
+
+    // Respond with success message and book title
+    return res.status(200).json({
+      message: `Record ${title} deleted successfully!`,
+      title,
+    });
+  } catch (err) {
+    const rsp_obj = { message: "Error - resource not found" };
+    return res.status(404).end(rsp_obj.message);
+  }
+});
 
 
 //start the server

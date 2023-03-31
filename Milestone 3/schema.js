@@ -14,7 +14,7 @@ const booksSchema = new mongoose.Schema({
     type: String,
   },
   img: {
-    type: Number,
+    type: String,
   },
 })
 
