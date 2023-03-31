@@ -2,6 +2,8 @@
 
 The Online Library Application is a web-based application that allows users to browse, search and borrow books online. The application provides a user-friendly interface, with features such as a book catalog, a shopping cart and a list of borrowed books.
 
+![fullPrjDemo](https://user-images.githubusercontent.com/96387037/229193559-a366011f-f8f7-4c0d-9157-1dd0eada9082.gif)
+
 ## Demo
 
 You can try out our online library application by visiting the following link: http://localhost:3000/
