@@ -4,7 +4,7 @@ const cart = []
 
 
 // Initialize the variable isLoggedIn to false
-let isLoggedIn = false
+let isLoggedIn = true
 
 // Get references to the login button and the modal
 const usernameInput = document.getElementById('username');
@@ -148,7 +148,6 @@ const buttonEventListener = () => {
           // If the user is logged in, check if the book is already in the cart
           cart.push(...state.filter(el => el.title === book));
           addToCart()
-          console.log("cart=",cart);
         }
       }
     })
@@ -184,7 +183,6 @@ const updateLogin = () => {
       //wipe user memory
       state.length = 0
       cart.length = 0
-      console.log("cart=",cart);
     });
     logoutItem.appendChild(logoutButton);
     navbar.replaceChild(logoutItem, navbar.children[navbar.children.length - 1]);
@@ -205,3 +203,9 @@ const updateLogin = () => {
   }
 }
 
+const viewCartLink = document.getElementById('view-cart');
+viewCartLink.addEventListener('click', () => {
+  const cartData = encodeURIComponent(JSON.stringify(cart));
+  const url = `cart.html?cartData=${cartData}`;
+  window.location.href = url;
+}); 
