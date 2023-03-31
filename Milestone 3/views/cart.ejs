@@ -91,101 +91,94 @@
 
 <body onload="updateTable()">
 
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <a class="navbar-brand" href="http://localhost:3000/">
+            <i class="fas fa-home"></i> Online Library
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-3">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal">
+                        Logout
+                    </button>
+                </li>
+                <li class="nav-item ml-3" id="my-books">
+                    <button type="button" class="btn btn-info">Borrowed Books</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <h1 class="center">MY CART</h1>
+
+
+    <!-- Book table -->
+    <div class="container my-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year</th>
+                    <th>ISBN</th>
+                    <th>Image Link</th>
+                    <th></th> <!-- New column for the button -->
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter username">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter password">
-                        </div>
-                    </form>
+                    Are you sure you want to checkout?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="modalButton">Login</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmCheckoutButton">Checkout</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <main>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-info">
-            <a class="navbar-brand" href="http://localhost:3000/">
-                <i class="fas fa-home"></i> Online Library
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item ml-3">
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal">
-                            Logout
-                        </button>
-                    </li>
-                    <li class="nav-item ml-3" id="my-books">
-                        <button type="button" class="btn btn-info">Borrowed Books</button>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+    <!-- Checkout button -->
+    <div class="container my-3">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#checkoutModal"
+            id="checkoutButton">Checkout</button>
+    </div>
 
-
-        <h1 class="center">MY CART</h1>
-
-
-        <!-- Book table -->
-        <div class="container my-5">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Year</th>
-                        <th>ISBN</th>
-                        <th>Image Link</th>
-                        <th></th> <!-- New column for the button -->
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Checkout button -->
-        <div class="container my-3">
-            <button type="button" class="btn btn-primary" id="checkout-btn">Checkout Books</button>
-        </div>
-        <div class="modal fade" id="checkout-modal" tabindex="-1" role="dialog" aria-labelledby="checkout-modal-label"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content" style="border-color: green;">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="checkout-modal-label">Success!</h5>
-                    </div>
-                    <div class="modal-body">
-                        Your books have been successfully checked out.
-                    </div>
+    <div class="modal fade" id="checkout-modal" tabindex="-1" role="dialog" aria-labelledby="checkout-modal-label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="border-color: green;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkout-modal-label">Success!</h5>
+                </div>
+                <div class="modal-body">
+                    Your books have been successfully checked out.
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -228,57 +221,45 @@
             buttonEventListener()
         }
 
-        // This function adds an event listener to all buttons with the class "btn-primary"
+        // This function adds an event listener to all buttons with the class "btn-danger"
         const buttonEventListener = () => {
             const btnPrimary = document.querySelectorAll('button.btn-danger');
-
-            // Iterate over each button and add a click event listener
             btnPrimary.forEach((button) => {
-
-                // If the user is not logged in, show an alert message
                 button.addEventListener('click', (event) => {
                     const book = event.target.dataset.book;
                     cart = cart.filter(el => el.title !== book)
                     updateTable()
-
-                    // if (!isLoggedIn) {
-                    //     alert('You must log in first...');
-                    // } else {
-                    //     const book = event.target.dataset.book;
-                    //     const existingCartItem = Boolean(cart.find(el => el.title === book));
-
-                    //     // If the book is already in the cart, show an alert message
-                    //     if (existingCartItem === true) {
-                    //         alert(`Book is already in cart`)
-
-                    //         // If the book is not in the cart, add it to the cart and update the cart count
-                    //     } else {
-
-                    //         // If the user is logged in, check if the book is already in the cart
-                    //         cart.push(...state.filter(el => el.title === book));
-                    //         addToCart()
-                    //     }
-                    // }
                 })
             });
         }
+
+        const logout = document.querySelector('.btn-info');
+        logout.addEventListener("click", () => {
+            cart = []
+            window.location.href = "http://localhost:3000/";
+        })
+
 
         const viewCartLink = document.getElementById('my-books');
         viewCartLink.addEventListener('click', () => {
             window.location.href = "borrowedBooks";
         });
 
-        const checkoutBtn = document.getElementById('checkout-btn');
         const checkoutModal = document.getElementById('checkout-modal');
+        const checkoutModal2 = document.getElementById("checkoutModal");
         const modalBackdrop = document.createElement('div');
-        modalBackdrop.classList.add('modal-backdrop', 'fade', 'show');
+        const confirmCheckoutButton = document.getElementById('confirmCheckoutButton');
 
-        checkoutBtn.addEventListener('click', function () {
+        confirmCheckoutButton.addEventListener('click', function () {
+
+            //hides checkout modal
+            checkoutModal2.style.display = "none";
+
             document.getElementsByClassName('my-5')[0].style.display = 'none';
             document.getElementsByClassName('my-3')[0].style.display = 'none';
             document.getElementsByClassName('center')[0].style.display = 'none';
 
-            // Show the modal
+            // Show the success modal
             checkoutModal.classList.add('show');
             checkoutModal.style.display = 'block';
 
@@ -289,17 +270,6 @@
             document.body.style.backdropFilter = 'blur(5px)';
 
             setTimeout(() => {
-                // Hide the modal
-                checkoutModal.classList.remove('show');
-                checkoutModal.style.display = 'none';
-
-                // Remove the modal backdrop from the body
-                document.body.removeChild(modalBackdrop);
-
-                // Remove the "blur" effect from the body
-                document.body.style.backdropFilter = 'none';
-
-                // Redirect to the borrowed books page
                 window.location.href = "borrowedBooks";
             }, 2500);
         });
