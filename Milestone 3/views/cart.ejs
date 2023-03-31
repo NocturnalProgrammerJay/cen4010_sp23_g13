@@ -60,6 +60,28 @@
         justify-content: center;
     }
 
+    .modal-backdrop.show {
+        opacity: 0.5;
+        background-color: black;
+    }
+
+    .modal-header {
+        border: none;
+    }
+
+    .modal-content {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    #checkout-modal .close {
+        display: none;
+    }
+
+    #checkout-modal .modal-content {
+        border-color: green;
+    }
+
     @media (max-height: 55vh) {
         .navbar {
             position: static;
@@ -100,56 +122,70 @@
         </div>
     </div>
 
+    <main>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+            <a class="navbar-brand" href="http://localhost:3000/">
+                <i class="fas fa-home"></i> Online Library
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ml-3">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal">
+                            Logout
+                        </button>
+                    </li>
+                    <li class="nav-item ml-3" id="my-books">
+                        <button type="button" class="btn btn-info">Borrowed Books</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-info">
-        <a class="navbar-brand" href="http://localhost:3000/">
-            <i class="fas fa-home"></i> Online Library
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item ml-3">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal">
-                        Logout
-                    </button>
-                </li>
-                <li class="nav-item ml-3" id="my-books">
-                    <button type="button" class="btn btn-info">Borrowed Books</button>
-                </li>
-            </ul>
+
+        <h1 class="center">MY CART</h1>
+
+
+        <!-- Book table -->
+        <div class="container my-5">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Year</th>
+                        <th>ISBN</th>
+                        <th>Image Link</th>
+                        <th></th> <!-- New column for the button -->
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
-    </nav>
 
-
-    <h1 class="center">MY CART</h1>
-
-
-    <!-- Book table -->
-    <div class="container my-5">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Year</th>
-                    <th>ISBN</th>
-                    <th>Image Link</th>
-                    <th></th> <!-- New column for the button -->
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Checkout button -->
-    <div class="container my-3">
-        <button type="button" class="btn btn-primary">Checkout Books</button>
-    </div>
+        <!-- Checkout button -->
+        <div class="container my-3">
+            <button type="button" class="btn btn-primary" id="checkout-btn">Checkout Books</button>
+        </div>
+        <div class="modal fade" id="checkout-modal" tabindex="-1" role="dialog" aria-labelledby="checkout-modal-label"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="border-color: green;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="checkout-modal-label">Success!</h5>
+                    </div>
+                    <div class="modal-body">
+                        Your books have been successfully checked out.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -230,7 +266,45 @@
         const viewCartLink = document.getElementById('my-books');
         viewCartLink.addEventListener('click', () => {
             window.location.href = "borrowedBooks";
-        }); 
+        });
+
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const checkoutModal = document.getElementById('checkout-modal');
+        const modalBackdrop = document.createElement('div');
+        modalBackdrop.classList.add('modal-backdrop', 'fade', 'show');
+
+        checkoutBtn.addEventListener('click', function () {
+            document.getElementsByClassName('my-5')[0].style.display = 'none';
+            document.getElementsByClassName('my-3')[0].style.display = 'none';
+            document.getElementsByClassName('center')[0].style.display = 'none';
+
+            // Show the modal
+            checkoutModal.classList.add('show');
+            checkoutModal.style.display = 'block';
+
+            // Add the modal backdrop to the body
+            document.body.appendChild(modalBackdrop);
+
+            // Add the "blur" effect to the body
+            document.body.style.backdropFilter = 'blur(5px)';
+
+            setTimeout(() => {
+                // Hide the modal
+                checkoutModal.classList.remove('show');
+                checkoutModal.style.display = 'none';
+
+                // Remove the modal backdrop from the body
+                document.body.removeChild(modalBackdrop);
+
+                // Remove the "blur" effect from the body
+                document.body.style.backdropFilter = 'none';
+
+                // Redirect to the borrowed books page
+                window.location.href = "borrowedBooks";
+            }, 2500);
+        });
+
+
     </script>
 </body>
 
