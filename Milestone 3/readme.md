@@ -11,6 +11,7 @@ You can try out our online library application by visiting the following link: h
 To log in, use the following demo credentials:
 
 Username: username@fau.edu
+
 Password: password123
 
 Note that this is just a demo and no actual borrowing or purchasing of books is possible.
