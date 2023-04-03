@@ -12,13 +12,12 @@ const path = require('path');
 
 app.set("view engine", "ejs")
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-  }))
+app.use(cors({
+  origin: '*'
+}));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static(__dirname + "/public"))
+app.use(express.static(path.join(__dirname, "../public")))
 app.set("view engine", "ejs")
 
 
@@ -35,7 +34,7 @@ app.get("/borrowedBooks", async (req, res) => {
 });
 
 
-const BookSchema = require("./schema")
+const BookSchema = require("../schema")
 // Define MongoDB connection string
 const db = `mongodb+srv://jamar:1XKbCHqW2NMFOVK2@cen4010.7zaydxl.mongodb.net/BOOKSDB?retryWrites=true&w=majority`
 mongoose.connect(db)

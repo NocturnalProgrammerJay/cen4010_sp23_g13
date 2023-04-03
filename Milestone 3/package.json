@@ -7,18 +7,22 @@
     "mime": "^3.0.0",
     "mine": "^0.1.0",
     "mongoose": "^7.0.3",
-    "mysql2": "^3.2.0",
     "path": "^0.12.7",
     "schema": "^0.2.1",
     "students": "^1.0.0"
   },
   "name": "milestone-3",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon database.js"
+    "start": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "file-loader": "^6.2.0",
+    "style-loader": "^3.3.2"
+  }
 }
