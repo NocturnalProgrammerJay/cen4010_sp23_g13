@@ -7,6 +7,9 @@ const ejs = require("ejs");
 
 // Create Express app & Set up middleware
 const app = express()
+const mime = require('mime');
+const path = require('path');
+
 app.set("view engine", "ejs")
 
 app.use(
@@ -19,8 +22,8 @@ app.use(express.static(__dirname + "/public"))
 app.set("view engine", "ejs")
 
 
-app.get("/", async (req, res) => {
-    res.render("index");
+app.get("/", async (req, res) =>  {
+  res.render("index");
 });
 
 app.get("/cart", async (req, res) => {
