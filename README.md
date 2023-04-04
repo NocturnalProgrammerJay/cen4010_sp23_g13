@@ -24,7 +24,7 @@ CEN4010_SP23_G13 is a successful example of a Scrum-based frontend project built
 
 
 ### Project Team 13
-![Team13Gif](https://user-images.githubusercontent.com/96387037/218864474-6952799f-6ab8-446a-96ba-f22816deb23b.gif)
+![homePageDemo](https://user-images.githubusercontent.com/96387037/229883439-da88c2f8-bbdc-4b80-b44e-52c3fbcabda6.gif)
 
 ### Jira
 ![image](https://user-images.githubusercontent.com/96387037/218852048-be1e573d-fd3e-4090-8419-69966443001e.png)
