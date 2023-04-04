@@ -121,6 +121,8 @@ class System {
   
   // This function handles the middleware for the express app, and routes requests to the appropriate handler functions
   systemMiddleware(req, res, next) {
+
+    // Get the instance of System
     const system = System.getInstance();
     
     // Route requests based on method and URL
@@ -171,4 +173,5 @@ class System {
   }
 }
 
+// Get the instance of System - starts backend application.
 System.getInstance()

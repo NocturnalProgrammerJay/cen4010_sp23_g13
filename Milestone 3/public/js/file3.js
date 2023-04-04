@@ -1,16 +1,24 @@
+/**
+ * A class that manages books and their borrowing status.
+ */
 class BookManager {
     constructor() {
+      // The state of the book manager
       this.state = [];
+
+      // Get references to relevant elements in the DOM
       this.tableBody = document.querySelector('tbody');
       this.logoutButton = document.querySelector('.btn-info');
+
       this.borrowedBooksUrl = "http://localhost:3000/getBorrowedBooks";
       this.returnBookUrl = "http://localhost:3000/returnBook";
     }
-  
+
+    //Initializes the book manager by fetching the borrowed books and updating the table.
     async init() {
       try {
-        const response = await fetch(this.borrowedBooksUrl);
-        const data = await response.json();
+        const response = await axios.get(this.borrowedBooksUrl);
+        const data = response.data;
         this.state = data;
         this.updateTable();
       } catch (error) {
@@ -21,8 +29,8 @@ class BookManager {
       this.logoutButton.addEventListener("click", this.logout.bind(this));
     }
   
+    //Updates the table with the books in the current state
     updateTable() {
-      // Clear the table body contents
       this.tableBody.innerHTML = '';
   
       // Loop through each book in the state and add it to the table
@@ -38,9 +46,11 @@ class BookManager {
         `;
         this.tableBody.appendChild(row);
       });
+      // Add an event listener to the return book buttons
       this.buttonEventListener()
     }
   
+    //Adds an event listener to each return book button.
     buttonEventListener() {
       const buttons = document.querySelectorAll('button.btn-success');
       buttons.forEach((button) => {
@@ -50,26 +60,29 @@ class BookManager {
             isbn: isbn
           };
   
-          await fetch(this.returnBookUrl, {
-            method: 'DELETE',
+          // Send a DELETE request to the server to return the book
+          await axios.delete(this.returnBookUrl, {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            data: data
           });
   
+          // Remove the book from the state and update the table
           this.state = this.state.filter(el => el.isbn !== isbn);
           this.updateTable();
         });
       });
     }
   
+    // Logs the user out of the book manager and redirects them to the homepage.
     logout() {
       this.state = [];
       window.location.href = "http://localhost:3000/";
     }
   }
-  
+
+  // Create a new instance of the BookManager class and initialize it
   const bookManager = new BookManager();
   bookManager.init();
   

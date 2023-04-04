@@ -1,8 +1,14 @@
+/**
+ * This class represents a web application that allows users to search for books, add them to a cart, and view their cart.
+ */
 class App {
     constructor() {
+      // Initialize the application state
       this.state = [];
       this.cart = [];
       this.isLoggedIn = true;
+
+      // Initialize the input fields, buttons, and modal
       this.usernameInput = document.getElementById('username');
       this.passwordInput = document.getElementById('password');
       this.loginButton = document.querySelector('#loginModal .modal-footer button.btn-primary');
@@ -20,6 +26,7 @@ class App {
       this.handleBookButtonClick = this.handleBookButtonClick.bind(this);
     }
   
+    // Initializes the application by adding event listeners to buttons and input fields
     init() {
       this.loginButton.addEventListener('click', this.handleLoginButtonClick);
       this.searchIcon.addEventListener('click', this.handleSearch.bind(this))
@@ -28,37 +35,44 @@ class App {
       this.viewCartLink.addEventListener('click', this.viewCartHandler.bind(this))
     }
   
+    /**
+     * Handles search events, such as clicking the search button or pressing Enter in the search input field
+     * @param {Event} event - The event object.
+     */
     async handleSearch(event) {
       if (event.key === 'Enter' || event.type === 'click') {
         await this.search();
       }
     }
   
+    // Sends a search request to the Google Books API and updates the search results table
     async search() {
       try {
         const query = this.searchInput.value.trim();
-  
+    
         if (query === '') {
           return;
         }
-  
+    
         const key = 'AIzaSyAj2K6rhZ7wT_dlp65rCuua2zQr8HYG-Io';
         const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${key}&maxResults=9`;
-        const response = await fetch(url);
-        const { items: searchResults } = await response.json();
-  
+        const response = await axios.get(url);
+        const { items: searchResults } = response.data;
+    
         this.searchResults = searchResults || [];
         this.updateTable();
-  
+    
       } catch (error) {
         console.error(error);
       }
     }
   
+    // Updates the search results table by creating rows for each book and adding them to the table
     updateTable() {
       this.tableBody.innerHTML = '';
   
       this.searchResults.forEach(({ volumeInfo }) => {
+        // Extract relevant information from the volumeInfo object of the book
         const book = {
           title: volumeInfo.title || 'Unknown title',
           author: Array.isArray(volumeInfo.authors) ? volumeInfo.authors[0] : volumeInfo.authors || 'Unknown author',
@@ -67,14 +81,14 @@ class App {
           img: volumeInfo.imageLinks ? volumeInfo.imageLinks.smallThumbnail : 'https://via.placeholder.com/150x200.png?text=No+image',
         };
   
+        
+        // Add the book to the application state if it doesn't already exist in the cart
         const existingBook = Boolean(this.cart.find((item) => item.isbn === book.isbn));
-  
         if (!existingBook) {
           this.state.push(book);
         }
   
         const row = document.createElement('tr');
-  
         row.innerHTML = `
           <td>${book.title}</td>
           <td>${book.author}</td>
@@ -85,11 +99,11 @@ class App {
         `;
   
         row.querySelector('button').addEventListener('click', this.handleBookButtonClick);
-  
         this.tableBody.appendChild(row);
       });
     }
   
+    // This function handles the login button click event
     handleLoginButtonClick() {
       const username = this.usernameInput.value.trim();
       const password = this.passwordInput.value.trim();
@@ -100,12 +114,13 @@ class App {
         this.cart = JSON.parse(localStorage.getItem('cart')) || []
         this.updateCartCount()
 
+        // Close the login modal and update the search results table
         document.querySelector('.modal-dialog').style.display = 'none';
         this.modal.classList.remove('show');
         document.querySelector('.modal-backdrop').remove();
         this.updateTable()
 
-  
+        // Update the login/logout button text and functionality
         document.querySelector('button[data-target="#loginModal"]').innerHTML = 'logout'
         document.querySelector('button[data-target="#loginModal"]').addEventListener('click', this.handleLogoutButtonClick.bind(this))
 
@@ -114,10 +129,12 @@ class App {
       }
     }
 
+    // This function handles the logout button click event
     handleLogoutButtonClick(){
       window.location.href = "http://localhost:3000/"
     }
   
+    // This function handles the book button click event
     handleBookButtonClick(event) {
         if (!this.isLoggedIn) {
             alert('You must log in first...');
@@ -133,9 +150,9 @@ class App {
                 this.updateCartCount()
             }
         }
-
     }
 
+    // Updates the cart count in the navigation bar
     updateCartCount = () => {
         var cartCount = document.getElementById("cartCount");
         cartCount.innerText = this.cart.length.toString()
@@ -143,12 +160,12 @@ class App {
         cartCount.classList.add("added");
     }
 
+    // Handler for viewing the cart
     viewCartHandler = () => {
         localStorage.setItem("cart", JSON.stringify(this.cart));
     }
 }
-  
 
-  const app = new App()
-  app.init()
-  
+// Create a new instance of the App class and initialize it
+const app = new App()
+app.init()
