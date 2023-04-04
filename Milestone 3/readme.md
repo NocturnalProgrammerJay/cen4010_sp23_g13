@@ -25,9 +25,10 @@ Note that this is just a demo and no actual borrowing or purchasing of books is 
 - **EJS:** The application uses Embedded JavaScript (EJS) as the templating language to render dynamic content on the server-side.
 - **MongoDB:** The application uses MongoDB as the database to store and retrieve book data.
 - **HTML, CSS, and Bootstrap:** The application uses HTML, CSS, and Bootstrap for the user interface design, which provides a responsive and mobile-friendly layout.
-- **JavaScript:** The application uses JavaScript to handle the client-side logic such as AJAX requests and form validations.
+- **JavaScript and OOP:** The application uses JavaScript for the client-side logic, including OOP principles such as classes, objects, and inheritance.
 - **Frontend API call to backend:** The application communicates with the server-side API to retrieve book data and perform CRUD operations.
-- **Google Book API:** The application integrates with the Google Book API to retrieve book information such as cover image and summary.
+- **Google Book API and Axios:** The application integrates with the Google Book API to retrieve book information such as cover image and summary, using Axios for the frontend API request.
+Environment Variables: The application uses environment variables to store sensitive information such as the MongoDB connection string and Google API key.
 - **LocalStorage:** The application uses LocalStorage to store user session data and cart items.
 
 ## Installation
