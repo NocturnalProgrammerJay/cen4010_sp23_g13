@@ -3,65 +3,140 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/styles.css">
-    <title>Team 13</title>
+    <title>Bootstrap Homepage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<!-- TODO: Configure Homepage-->
+<style>
+    .btn-primary {
+        background-color: purple;
+        border-color: purple;
+    }
+
+    .btn-primary:hover {
+        background-color: darkpurple;
+        border-color: darkpurple;
+    }
+</style>
 
 <body>
-    <!--Navbar-->
-    <nav class="homepage-nav">
-        <div class="img-container">
-            <img class="nav-img" src="https://www.fau.edu/public-affairs/images/initial-mark.png" alt="fau-logo">
-        </div>
-        <div class="nav-links">
-            <!-- <a class="nav-link" href="project">Project</a></li> -->
-            <!-- <a class="nav-link" href="#">Crew</a></li> -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://www.fau.edu/public-affairs/images/initial-mark.png" width="75" height="40"
+                class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#team-members">Team Members</a>
+                </li>
+            </ul>
         </div>
     </nav>
 
-    <!--About Project-->
-    <header>
-        <div>
-            <blockquote class="project-container">
-                <p class="project-title">Team 13</p>
-                <p class="description"><em>Principle of Software Engineering group. Spring 2023</em></p>
-            </blockquote>
-        </div>
-    </header>
+    <!-- Hero Section -->
+    <section class="jumbotron text-center">
+        <h1 class="display-4">Project: BibloTech</h1>
+        <p class="lead mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <img src="./img/prjDemo.gif" alt="Your Project Demo" width="500" height="auto">
+    </section>
 
-    <!--Team Members-->
-    <main>
-        <div id="about" class="grid">
-            <!-- FIXME: PORT # may be different/ Use live server extension -->
-            <div class="grid-item grid-item-1"><a class="grid-item-link"
-                    href="http://lamp.cse.fau.edu/~juanhernande2021/milestone0/cen4010_sp23_g13-main/public/view/aboutMe/juan/juan.html">Juan</a></div>
-            <div class="grid-item grid-item-2"><a class="grid-item-link"
-                    href="http://lamp.cse.fau.edu/~gfairfield2019/milestone0/cen4010_sp23_g13-main/public/view/aboutMe/grant/grant.html">Grant</a></div>
-            <div class="grid-item grid-item-3"><a class="grid-item-link"
-                    href="http://lamp.cse.fau.edu/~dominicwilso2019/milestone0/cen4010_sp23_g13-main/public/view/aboutMe/dominic/dominic.html">Dominic</a></div>
-            <div class="grid-item grid-item-4"><a class="grid-item-link"
-                    href="http://lamp.cse.fau.edu/~bdenadaimund2022/CEN4010/about-me/">Bruno</a></div>
-            <div class="grid-item grid-item-5"><a class="grid-item-link"
-                    href="http://lamp.cse.fau.edu/~jandrade2018/milestone0/cen4010_sp23_g13-main/public/view/aboutMe/jamar/jamar.html">Jamar</a></div>
-            <div class="grid-item grid-item-6">MEET THE CREW</div>
-        </div>
-    </main>
+    <!-- Team Member Section -->
+    <section id="team-members" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Meet the talented individuals</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-2 mb-4">
+                    <div class="card h-100">
+                        <img src="./img/jamar.png" class="card-img-top img-fluid" alt="Team Member 1"
+                            style="height: 200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Jamar Andrade</h5>
+                            <p class="card-text">Scrum Master</p>
+                            <a href="http://lamp.cse.fau.edu/~jandrade2018/milestone0/cen4010_sp23_g13-main/public/view/aboutMe/jamar/jamar.html"
+                                class="btn btn-primary">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <div class="card h-100">
+                        <img src="./img/pfp_grant.png" class="card-img-top img-fluid" alt="Team Member 2"
+                            style="height: 200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Grant Fairfield</h5>
+                            <p class="card-text">Developer Team</p>
+                            <a href="http://lamp.cse.fau.edu/~gfairfield2019/milestone0/cen4010_sp23_g13-main/public/view/aboutMe/grant/grant.html"
+                                class="btn btn-primary">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <div class="card h-100">
+                        <img src="./img/bruno.jpeg" class="card-img-top img-fluid" alt="Team Member 3"
+                            style="height: 200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Bruno Mundim</h5>
+                            <p class="card-text">Product Owner</p>
+                            <a href="http://lamp.cse.fau.edu/~bdenadaimund2022/CEN4010/about-me/"
+                                class="btn btn-primary">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <div class="card h-100">
+                        <img src="./img/dominic.png" class="card-img-top img-fluid" alt="Team Member 5"
+                            style="height: 200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Dominic Wilson</h5>
+                            <p class="card-text">DevOps Leader</p>
+                            <a href="http://lamp.cse.fau.edu/~dominicwilso2019/milestone0/cen4010_sp23_g13-main/public/view/aboutMe/dominic/dominic.html"
+                                class="btn btn-primary">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <div class="card h-100">
+                        <img src="./img/juan.png" class="card-img-top img-fluid" alt="Team Member 4"
+                            style="height: 200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Juan Hernandez</h5>
+                            <p class="card-text">UX Designer</p>
+                            <a href="http://lamp.cse.fau.edu/~juanhernande2021/milestone0/cen4010_sp23_g13-main/public/view/aboutMe/juan/juan.html"
+                                class="btn btn-primary">View Profile</a>
+                        </div>
+                    </div>
+                </div>
 
-    <!--Footer-->
-    <!-- HELOOOO -->
-    <footer>
-        <!-- FIXME: Replace  -->
-        <div>
-            <blockquote class="project-container project-container--bb">
-                <p class="project-title">Mission Statement</p>
-                <p class="description"><em>Create a scrum project using a agile framework.</em></p>
-            </blockquote>
+            </div>
         </div>
-    </footer>
+    </section>
 
+    <!-- Mission Statement Section -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Mission</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2" style="text-align: center;">
+                    <p>Our mission at CEN4010_SP23_G13 is to collaboratively develop high-quality web applications using
+                        modern web development technologies and tools, while adhering to Scrum-based project management
+                        principles. We leverage FAU Lampserver for hosting, JIRA for project management, and Git for
+                        collaboration to ensure the stability and consistency of our codebase. Our goal is to deliver
+                        successful projects that exceed the expectations of our clients and users.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>
