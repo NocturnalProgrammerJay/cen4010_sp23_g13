@@ -80,6 +80,8 @@ class CartManager {
 
       // Redirect to the borrowedBooks page
       setTimeout(() => {
+        this.cart = []
+        localStorage.setItem("cart", JSON.stringify(this.cart))
         window.location.href = "borrowedBooks";
       }, 2500);
     });
