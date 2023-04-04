@@ -1,100 +1,174 @@
 // Import required modules
-const mongoose = require("mongoose")
-const express = require("express")
-const bodyParser = require("body-parser")
-const cors = require("cors")
+const mongoose = require("mongoose");
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const path = require("path");
 const ejs = require("ejs");
 
-// Create Express app & Set up middleware
-const app = express()
-const mime = require('mime');
-const path = require('path');
-
-app.use(cors({
-  origin: '*'
-}));
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, "../public")))
-app.set("view engine", "ejs")
+// Load environment variables from .env file
+require('dotenv').config();
 
 
-app.get("/", async (req, res) =>  {
-  res.render("homePage");
-});
+class System {
+  static instance;
 
-app.get("/cart", async (req, res) => {
-    res.render("cartPage");
-});
+  // Define the MongoDB connection string using environment variables
+  db = `mongodb+srv://${process.env.NAME}:${process.env.PASSWORD}@cen4010.7zaydxl.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`
 
-app.get("/borrowedBooks", async (req, res) => {
-    res.render("borrowedBooksPage");
-});
+  constructor() {
+    // Initialize the express app
+    this.app = express();
+    this.app.use(cors({ origin: "*" }));
 
+    // Configure body parser
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
 
-const BookSchema = require("../schema")
-// Define MongoDB connection string
-const db = `mongodb+srv://jamar:1XKbCHqW2NMFOVK2@cen4010.7zaydxl.mongodb.net/BOOKSDB?retryWrites=true&w=majority`
-mongoose.connect(db)
-// const collection = db.collection('BOOKSDB');
+    // Serve static files from the public directory
+    this.app.use(express.static(path.join(__dirname, "../public")));
 
-app.get("/getBorrowedBooks", async function (req, res) {
-    try {
+    // Set the view engine to EJS
+    this.app.set("view engine", "ejs");
+    this.app.use(this.systemMiddleware.bind(this));
+
+    // Connect to the MongoDB database
+    const BookSchema = require("../schema")
+    mongoose.connect(this.db)
+
+    // Define the handleRequest method for rendering EJS templates
+    this.handleRequest = (pageName, req, res) => {
+      const pageData = { pageTitle: pageName };
+      res.render(pageName, pageData);
+    }
+
+    // Define the getBorrowedBooks method for retrieving borrowed books from the database
+    this.getBorrowedBooks = async (req, res) => {
+      try {
         const data = await BookSchema.find();
         return res.status(200).send(data);
-    } catch (err) {
-      const rsp_obj = { message: "error - resource not found" };
-      return res.status(404).end(rsp_obj.message);
-    }
-});
-
-app.post("/addBooks", async function (req, res) {
-  try {
-    const data = req.body;
-
-    for (const book of data) {
-      let { author, title, published, isbn, img } = book;
-
-      const bookExists = await BookSchema.find({ title });
-      if (bookExists.length > 0) {
-        continue;
+      } catch (err) {
+        const rsp_obj = { message: "error - resource not found" };
+        return res.status(404).end(rsp_obj.message);
       }
-
-      let bookData = new BookSchema({ author, title, published, isbn, img });
-      await bookData.save();
-    }
-
-    const rsp_obj = {
-      message: "Book(s) record created successfully.",
-      status: "201",
     };
 
-    return res.status(201).json(rsp_obj);
-  } catch (err) {
-    const rsp_obj = { message: "error - resource not found" };
-    return res.status(404).end(rsp_obj.message);
+    // Define the addBooks method for adding books to the database
+    this.addBooks = async (req, res) => {
+      try {
+        const data = req.body;
+
+        for (const book of data) {
+          let { author, title, published, isbn, img } = book;
+
+          const bookExists = await BookSchema.find({ title });
+          if (bookExists.length > 0) {
+            continue;
+          }
+
+          let bookData = new BookSchema({
+            author,
+            title,
+            published,
+            isbn,
+            img,
+          });
+          await bookData.save();
+        }
+
+        const rsp_obj = {
+          message: "Book(s) record created successfully.",
+          status: "201",
+        };
+
+        return res.status(201).json(rsp_obj);
+      } catch (err) {
+        const rsp_obj = { message: "error - resource not found" };
+        return res.status(404).end(rsp_obj.message);
+      }
+    }
+
+    // Define the returnBook method for deleting a book from the database
+    this.returnBook = async(req, res) => {
+      try {
+        const { isbn } = req.body;
+
+        // Delete book record from database
+        await BookSchema.deleteOne({ isbn });
+
+        // Respond with success message and book isbn
+        return res.status(200).json({
+          message: `Record ${isbn} deleted successfully!`,
+          isbn,
+        });
+      } catch (err) {
+        const rsp_obj = { message: "Error - resource not found" };
+        return res.status(404).end(rsp_obj.message);
+      }
+    }
+    
+    this.app.listen(3000);
+    console.log("Server is running...");
   }
-});
-
-app.delete("/returnBook", async function (req, res) {
-  try {
-    const { isbn } = req.body;
-
-    // Delete book record from database
-    await BookSchema.deleteOne({ isbn });
-
-    // Respond with success message and book isbn
-    return res.status(200).json({
-      message: `Record ${isbn} deleted successfully!`,
-      isbn,
-    });
-  } catch (err) {
-    const rsp_obj = { message: "Error - resource not found" };
-    return res.status(404).end(rsp_obj.message);
+  
+  // This function returns the instance of the System class, and creates it if it doesn't exist already
+  static getInstance() {
+    if (!System.instance) {
+      System.instance = new System();
+    }
+    return System.instance;
   }
-});
+  
+  // This function handles the middleware for the express app, and routes requests to the appropriate handler functions
+  systemMiddleware(req, res, next) {
+    const system = System.getInstance();
+    
+    // Route requests based on method and URL
+    switch (req.method) {
+      case "GET":
+        switch (req.url) {
+          case "/":
+            system.handleRequest("homePage", req, res);
+            break;
+          case "/cart":
+            system.handleRequest("cartPage", req, res);
+            break;
+          case "/borrowedBooks":
+            system.handleRequest("borrowedBooksPage", req, res);
+            break;
+          case "/getBorrowedBooks":
+            system.getBorrowedBooks(req, res);
+            break;
+          default:
+            next();
+            break;
+        }
+        break;
+      case "POST":
+        switch (req.url) {
+          case "/addBooks":
+            system.addBooks(req, res);
+            break;
+          default:
+            next();
+            break;
+        }
+        break;
+      case "DELETE":
+        switch (req.url) {
+          case "/returnBook":
+            system.returnBook(req, res);
+            break;
+          default:
+            next();
+            break;
+        }
+        break;
+      default:
+        next();
+        break;
+    }
+  }
+}
 
-
-//start the server
-app.listen(3000)
-console.log("Server is running...")
+System.getInstance()

@@ -98,6 +98,7 @@ class CartManager {
     this.cart.length > 0 && this.updateTable()
     this.buttonEventListener();
     this.logout();
+    
     this.viewCartLink.addEventListener('click', () => {
       localStorage.setItem("cart", JSON.stringify(this.cart));
       window.location.href = "borrowedBooks";
