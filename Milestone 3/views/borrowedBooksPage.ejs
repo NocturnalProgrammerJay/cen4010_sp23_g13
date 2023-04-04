@@ -60,28 +60,6 @@
         justify-content: center;
     }
 
-    .modal-backdrop.show {
-        opacity: 0.5;
-        background-color: black;
-    }
-
-    .modal-header {
-        border: none;
-    }
-
-    .modal-content {
-        border-radius: 0;
-        box-shadow: none;
-    }
-
-    #checkout-modal .close {
-        display: none;
-    }
-
-    #checkout-modal .modal-content {
-        border-color: green;
-    }
-
     @media (max-height: 55vh) {
         .navbar {
             position: static;
@@ -89,9 +67,7 @@
     }
 </style>
 
-<body onload="updateTable()">
-
-
+<body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <a class="navbar-brand" href="http://localhost:3000/">
@@ -103,20 +79,22 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" id="view-cart" href="cart">
+                        <i class="fas fa-shopping-cart"></i> Cart <span id="cartCount" class="cart-count">0</span>
+                    </a>
+                </li>
                 <li class="nav-item ml-3">
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal">
                         Logout
                     </button>
-                </li>
-                <li class="nav-item ml-3" id="my-books">
-                    <button type="button" class="btn btn-info">Borrowed Books</button>
                 </li>
             </ul>
         </div>
     </nav>
 
 
-    <h1 class="center">MY CART</h1>
+    <h1 class="center">My Library</h1>
 
 
     <!-- Book table -->
@@ -137,49 +115,6 @@
         </table>
     </div>
 
-    <!-- Checkout Modal -->
-    <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to checkout?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="confirmCheckoutButton">Checkout</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Checkout button -->
-    <div class="container my-3">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#checkoutModal"
-            id="checkoutButton">Checkout</button>
-    </div>
-
-    <div class="modal fade" id="checkout-modal" tabindex="-1" role="dialog" aria-labelledby="checkout-modal-label"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content" style="border-color: green;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="checkout-modal-label">Success!</h5>
-                </div>
-                <div class="modal-body">
-                    Your books have been successfully checked out.
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -192,7 +127,7 @@
         crossorigin="anonymous"></script>
 
     <!-- explicit js code -->
-    <script src="js/file2.js"></script>
+    <script src="js/file3.js"></script>
 </body>
 
 </html>

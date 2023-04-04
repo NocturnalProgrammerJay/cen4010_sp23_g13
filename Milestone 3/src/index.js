@@ -10,8 +10,6 @@ const app = express()
 const mime = require('mime');
 const path = require('path');
 
-app.set("view engine", "ejs")
-
 app.use(cors({
   origin: '*'
 }));
@@ -22,15 +20,15 @@ app.set("view engine", "ejs")
 
 
 app.get("/", async (req, res) =>  {
-  res.render("index");
+  res.render("homePage");
 });
 
 app.get("/cart", async (req, res) => {
-    res.render("cart");
+    res.render("cartPage");
 });
 
 app.get("/borrowedBooks", async (req, res) => {
-    res.render("borrowed");
+    res.render("borrowedBooksPage");
 });
 
 
@@ -80,15 +78,15 @@ app.post("/addBooks", async function (req, res) {
 
 app.delete("/returnBook", async function (req, res) {
   try {
-    const { title } = req.body;
+    const { isbn } = req.body;
 
     // Delete book record from database
-    await BookSchema.deleteOne({ title });
+    await BookSchema.deleteOne({ isbn });
 
-    // Respond with success message and book title
+    // Respond with success message and book isbn
     return res.status(200).json({
-      message: `Record ${title} deleted successfully!`,
-      title,
+      message: `Record ${isbn} deleted successfully!`,
+      isbn,
     });
   } catch (err) {
     const rsp_obj = { message: "Error - resource not found" };

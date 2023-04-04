@@ -54,6 +54,39 @@
         z-index: 1000;
     }
 
+    .center,
+    .my-3 {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .modal-backdrop.show {
+        opacity: 0.5;
+        background-color: black;
+    }
+
+    .modal-header {
+        border: none;
+    }
+
+    .modal-content {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    #checkout-modal .close {
+        display: none;
+    }
+
+    #checkout-modal .modal-content {
+        border-color: green;
+    }
+
+    .book-img {
+        height: 200px;
+        width: 150px
+    }
+
     @media (max-height: 55vh) {
         .navbar {
             position: static;
@@ -63,41 +96,10 @@
 
 <body>
 
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter username">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter password">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="modalButton">Login</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="http://localhost:3000/">
             <i class="fas fa-home"></i> Online Library
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -106,40 +108,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" id="view-cart" href="cart">
-                        <i class="fas fa-shopping-cart"></i> Cart <span id="cartCount" class="cart-count">0</span>
-                    </a>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item ml-3">
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal">
-                        Login
+                        Logout
                     </button>
+                </li>
+                <li class="nav-item ml-3" id="my-books">
+                    <button type="button" class="btn btn-info">Borrowed Books</button>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container my-5 text-center">
-        <img src="https://www.roselandpubliclibrary.org/rfp/_zumu_user_image_cache/ebook.png" alt="Ebook image"
-            style="max-width: 100%; height: 25%">
-    </div>
 
-    <!-- Search Bar -->
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for books..." id="search">
-                    <div class="input-group-append">
-                        <button class="btn btn-secondary" type="button" onclick="search()">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1 class="center">MY CART</h1>
 
 
     <!-- Book table -->
@@ -160,6 +142,49 @@
         </table>
     </div>
 
+    <!-- Checkout Modal -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to checkout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmCheckoutButton">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout button -->
+    <div class="container my-3">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#checkoutModal"
+            id="checkoutButton">Checkout</button>
+    </div>
+
+    <div class="modal fade" id="checkout-modal" tabindex="-1" role="dialog" aria-labelledby="checkout-modal-label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="border-color: green;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkout-modal-label">Success!</h5>
+                </div>
+                <div class="modal-body">
+                    Your books have been successfully checked out.
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -172,7 +197,7 @@
         crossorigin="anonymous"></script>
 
     <!-- explicit js code -->
-    <script src="js/file1.js"></script>
+    <script src="js/file2.js"></script>
 </body>
 
 </html>
