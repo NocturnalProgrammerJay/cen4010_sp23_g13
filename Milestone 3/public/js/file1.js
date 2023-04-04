@@ -2,7 +2,7 @@ class App {
     constructor() {
       this.state = [];
       this.cart = [];
-      this.isLoggedIn = true;
+      this.isLoggedIn = false;
       this.usernameInput = document.getElementById('username');
       this.passwordInput = document.getElementById('password');
       this.loginButton = document.querySelector('#loginModal .modal-footer button.btn-primary');
@@ -95,6 +95,8 @@ class App {
       const password = this.passwordInput.value.trim();
   
       if (username === 'username@fau.edu' && password === 'pass') {
+        document.querySelector('#view-cart.nav-link').href = '/cart';
+
         this.isLoggedIn = true;
   
         const modalDialog = document.querySelector('.modal-dialog');
