@@ -95,31 +95,16 @@ class App {
       const password = this.passwordInput.value.trim();
   
       if (username === 'username@fau.edu' && password === 'pass') {
+        this.isLoggedIn = true
         document.querySelector('#view-cart.nav-link').href = '/cart';
         this.cart = JSON.parse(localStorage.getItem('cart')) || []
         this.updateCartCount()
 
-        this.isLoggedIn = true
-        var modalDialog = document.querySelector('.modal-dialog');
-        modalDialog.style.display = 'none';
-
+        document.querySelector('.modal-dialog').style.display = 'none';
         this.modal.classList.remove('show');
         document.querySelector('.modal-backdrop').remove();
-
         this.updateTable()
 
-        // this.isLoggedIn = true;
-        // this.modal.classList.remove('show');
-        // this.modal.style.display = 'none';
-        // document.querySelector('.modal-backdrop').remove();
-        // // const loginButton = document.querySelector('button[data-target="#loginModal"]');
-        // // loginButton.style.display = 'none';
-  
-        // const modalDialog = document.querySelector('.modal-dialog');
-        // modalDialog.style.display = 'none';
-        // // this.modal.classList.remove('show');
-        // // document.querySelector('.modal-backdrop').remove();
-        // // this.modal.style.display = 'none';
   
         document.querySelector('button[data-target="#loginModal"]').innerHTML = 'logout'
         document.querySelector('button[data-target="#loginModal"]').addEventListener('click', this.handleLogoutButtonClick.bind(this))
