@@ -2,7 +2,7 @@ class App {
     constructor() {
       this.state = [];
       this.cart = [];
-      this.isLoggedIn = false;
+      this.isLoggedIn = true;
       this.usernameInput = document.getElementById('username');
       this.passwordInput = document.getElementById('password');
       this.loginButton = document.querySelector('#loginModal .modal-footer button.btn-primary');
@@ -96,23 +96,34 @@ class App {
   
       if (username === 'username@fau.edu' && password === 'pass') {
         document.querySelector('#view-cart.nav-link').href = '/cart';
+        this.cart = JSON.parse(localStorage.getItem('cart')) || []
+        this.updateCartCount()
 
-        this.isLoggedIn = true;
-  
-        const modalDialog = document.querySelector('.modal-dialog');
+        this.isLoggedIn = true
+        var modalDialog = document.querySelector('.modal-dialog');
         modalDialog.style.display = 'none';
+
         this.modal.classList.remove('show');
         document.querySelector('.modal-backdrop').remove();
-        this.modal.style.display = 'none';
+
+        this.updateTable()
+
+        // this.isLoggedIn = true;
+        // this.modal.classList.remove('show');
+        // this.modal.style.display = 'none';
+        // document.querySelector('.modal-backdrop').remove();
+        // // const loginButton = document.querySelector('button[data-target="#loginModal"]');
+        // // loginButton.style.display = 'none';
+  
+        // const modalDialog = document.querySelector('.modal-dialog');
+        // modalDialog.style.display = 'none';
+        // // this.modal.classList.remove('show');
+        // // document.querySelector('.modal-backdrop').remove();
+        // // this.modal.style.display = 'none';
   
         document.querySelector('button[data-target="#loginModal"]').innerHTML = 'logout'
         document.querySelector('button[data-target="#loginModal"]').addEventListener('click', this.handleLogoutButtonClick.bind(this))
-  
-        // Load the cart items from the local storage
-        const cartItems = JSON.parse(localStorage.getItem('cart'));
-        if (Array.isArray(cartItems)) {
-          this.cart = cartItems;
-        }
+
       } else {
         alert('Invalid username or password');
       }
@@ -133,17 +144,17 @@ class App {
                 alert(`Book is already in cart`)
             } else {
                 this.cart.push(...this.state.filter(el => el.isbn === isbn ));
-                this.addToCart()
+                localStorage.setItem("cart", JSON.stringify(this.cart))
+                this.updateCartCount()
             }
         }
 
     }
 
-    addToCart = () => {
+    updateCartCount = () => {
         var cartCount = document.getElementById("cartCount");
-        var count = parseInt(cartCount.innerText);
-        count++;
-        cartCount.innerText = count;
+        cartCount.innerText = this.cart.length.toString()
+        console.log(this.cart.length.toString());
         cartCount.classList.add("added");
     }
 
