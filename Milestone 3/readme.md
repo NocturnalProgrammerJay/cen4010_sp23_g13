@@ -12,7 +12,7 @@ To log in, use the following demo credentials:
 
 Username: username@fau.edu
 
-Password: password123
+Password: pass
 
 Note that this is just a demo and no actual borrowing or purchasing of books is possible.
 
