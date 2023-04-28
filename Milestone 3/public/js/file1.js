@@ -79,8 +79,7 @@ class App {
           published: volumeInfo.publishedDate ? volumeInfo.publishedDate.slice(0, 4) : 'Unknown year',
           isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers[0].identifier : 'Unknown ISBN',
           img: volumeInfo.imageLinks ? volumeInfo.imageLinks.smallThumbnail : 'https://via.placeholder.com/150x200.png?text=No+image',
-        };
-  
+        };  
         
         // Add the book to the application state if it doesn't already exist in the cart
         const existingBook = Boolean(this.cart.find((item) => item.isbn === book.isbn));
@@ -94,7 +93,7 @@ class App {
           <td>${book.author}</td>
           <td>${book.published}</td>
           <td>${book.isbn}</td>
-          <td><img class="book-img" src="${book.img}"></td>
+          <td><img src="${book.img}"></td>
           <td><button class="btn btn-primary" data-isbn="${book.isbn}">Add to Cart</button></td>
         `;
         console.log(book.img);
