@@ -76,9 +76,9 @@ class CartManager {
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.published}</td>
-        <td>${book.isbn}</td>
-        <td><img src="${book.img}"></td>
-        <td><button class="btn btn-danger" data-isbn="${book.isbn}">Remove from Cart</button></td>
+      <td>${book.isbn}</td>
+      <td><img src="${book.img}"></td>
+      <td><button class="btn btn-danger" data-isbn="${book.isbn}">Remove from Cart</button></td>
       `;
       this.tableBody.appendChild(row);
     });

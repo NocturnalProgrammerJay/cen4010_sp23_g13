@@ -97,7 +97,7 @@ class App {
           <td><img class="book-img" src="${book.img}"></td>
           <td><button class="btn btn-primary" data-isbn="${book.isbn}">Add to Cart</button></td>
         `;
-  
+        console.log(book.img);
         row.querySelector('button').addEventListener('click', this.handleBookButtonClick);
         this.tableBody.appendChild(row);
       });
@@ -156,7 +156,6 @@ class App {
     updateCartCount = () => {
         var cartCount = document.getElementById("cartCount");
         cartCount.innerText = this.cart.length.toString()
-        console.log(this.cart.length.toString());
         cartCount.classList.add("added");
     }
 
