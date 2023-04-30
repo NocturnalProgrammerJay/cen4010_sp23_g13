@@ -2,7 +2,9 @@
   "scripts": {
     "start": "npm-run-all start:*",
     "start:install": "cd Milestone3 && npm install",
-    "start:server": "cd Milestone3 && nodemon src/index.js"
+    "start:server": "cd Milestone3 && nodemon src/index.js",
+    "build": "npm run build:milestone3",
+    "build:milestone3": "cd Milestone3 && npm run build"
   },
   "dependencies": {
     "mysql2": "^3.2.0",
