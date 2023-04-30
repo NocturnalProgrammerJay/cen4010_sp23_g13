@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "cd Milestone3 && nodemon src/index.js",
+    "start": "cd Milestone3 && npm install && nodemon src/index.js",
     "build": "nodemon src/index.js"
   },
   "dependencies": {
