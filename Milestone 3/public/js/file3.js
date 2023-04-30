@@ -35,6 +35,7 @@ class BookManager {
   
       // Loop through each book in the state and add it to the table
       this.state.forEach((book) => {
+        console.log(book.img)
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${book.title}</td>
