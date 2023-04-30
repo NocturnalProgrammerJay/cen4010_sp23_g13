@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "cd Milestone3 && nodemon src/index.js",
-    "build": "cd Milestone3 && npm install && nodemon src/index.js"
+    "build": "npm-run-all --parallel install:* start",
+    "install:Milestone3": "cd Milestone3 && npm install"
   },
   "dependencies": {
     "mysql2": "^3.2.0",
