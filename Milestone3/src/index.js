@@ -109,6 +109,12 @@ class System {
     
     this.app.listen(3000);
     console.log("Server is running...");
+
+    router.get('/', function(req, res, next) {
+      res.render('index', {  path: '' });
+    });
+
+    handleRequest("homePage", req, res);
   }
   
   // This function returns the instance of the System class, and creates it if it doesn't exist already
