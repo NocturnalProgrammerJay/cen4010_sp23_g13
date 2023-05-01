@@ -1,4 +1,3 @@
-import axios from 'axios'
 
 /**
  * This class represents a web application that allows users to search for books, add them to a cart, and view their cart.
@@ -58,16 +57,18 @@ class App {
     
         const key = 'AIzaSyAj2K6rhZ7wT_dlp65rCuua2zQr8HYG-Io';
         const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${key}&maxResults=9`;
-        const response = await axios.get(url);
-        const { items: searchResults } = response.data;
+        const response = await fetch(url);
+        const data = await response.json();
+        const searchResults = data.items || [];
     
-        this.searchResults = searchResults || [];
+        this.searchResults = searchResults;
         this.updateTable();
     
       } catch (error) {
         console.error(error);
       }
     }
+    
   
     // Updates the search results table by creating rows for each book and adding them to the table
     updateTable() {

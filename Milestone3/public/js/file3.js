@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 
 /**
  * A class that manages books and their borrowing status.
@@ -20,17 +18,18 @@ class BookManager {
     //Initializes the book manager by fetching the borrowed books and updating the table.
     async init() {
       try {
-        const response = await axios.get(this.borrowedBooksUrl);
-        const data = response.data;
+        const response = await fetch(this.borrowedBooksUrl);
+        const data = await response.json();
         this.state = data;
         this.updateTable();
       } catch (error) {
         console.log(error);
       }
-  
+    
       this.updateTable()
       this.logoutButton.addEventListener("click", this.logout.bind(this));
     }
+    
   
     //Updates the table with the books in the current state
     updateTable() {
@@ -63,21 +62,23 @@ class BookManager {
           const data = {
             isbn: isbn
           };
-  
+    
           // Send a DELETE request to the server to return the book
-          await axios.delete(this.returnBookUrl, {
+          await fetch(this.returnBookUrl, {
+            method: 'DELETE',
             headers: {
               "Content-Type": "application/json"
             },
-            data: data
+            body: JSON.stringify(data)
           });
-  
+    
           // Remove the book from the state and update the table
           this.state = this.state.filter(el => el.isbn !== isbn);
           this.updateTable();
         });
       });
     }
+    
   
     // Logs the user out of the book manager and redirects them to the homepage.
     logout() {
