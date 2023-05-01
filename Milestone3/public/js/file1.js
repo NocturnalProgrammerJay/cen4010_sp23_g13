@@ -1,6 +1,6 @@
 
 /**
- * This class represents a web application that allows users to search for books, add them to a cart, and view their cart.
+ * This class represents a web application that allows users to search for books, add them to a cart, and view their cart. afjdaf
  */
 class App {
     constructor() {
