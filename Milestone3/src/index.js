@@ -130,7 +130,7 @@ class System {
     switch (req.method) {
       case "GET":
         switch (req.url) {
-          case "/":
+          case "/Milestone3":
             console.log("HELLO")
             res.render("homepage");
             break;
