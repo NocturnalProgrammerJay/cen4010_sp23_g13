@@ -39,7 +39,7 @@ class System {
     // Define the handleRequest method for rendering EJS templates
     this.handleRequest = (pageName, req, res) => {
       const pageData = { pageTitle: pageName };
-      res.render(pageName, pageData);
+      res.render(__dirname + `/views/${pageName}.ejs`, pageData);
     }
 
     // Define the getBorrowedBooks method for retrieving borrowed books from the database
