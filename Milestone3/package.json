@@ -1,32 +1,26 @@
 {
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "ejs": "^3.1.9",
-    "express": "^4.18.2",
-    "mime": "^3.0.0",
-    "mine": "^0.1.0",
-    "mongoose": "^7.1.0",
-    "mysql2": "^3.2.0",
-    "nodemon": "^2.0.22",
-    "path": "^0.12.7",
-    "schema": "^0.2.1",
-    "students": "^1.0.0"
-  },
   "name": "milestone-3",
   "version": "1.0.0",
+  "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon src/index.js",
-    "build": "npm install && nodemon src/index.js"
+    "start": "node src/index.js",
+    "build": "npm install && node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.5",
+    "mysql2": "^3.1.0",
+    "schema": "^1.1.1"
+  },
   "devDependencies": {
-    "css-loader": "^6.7.3",
-    "file-loader": "^6.2.0",
-    "style-loader": "^3.3.2"
+    "nodemon": "^2.0.15"
   }
 }
