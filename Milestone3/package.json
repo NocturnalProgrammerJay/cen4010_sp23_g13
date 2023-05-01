@@ -19,7 +19,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js",
-    "build": "nodemon src/index.js"
+    "build": "npm install && nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
